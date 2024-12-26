@@ -1,0 +1,227 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+h2 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: #555555;
+}
+
+p {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #555555;
+}
+
+form {
+  background: #ffffff;
+  padding: 10px 20px 20px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 93%;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+input::placeholder {
+  color: #888888;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+select option {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.link-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 0px;
+}
+
+.text-link {
+  font-size: 1em;
+  font-weight: bold;
+  color: #555555;
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.text-link:hover {
+  color: #007bff;
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+button:disabled {
+  background: #e0e0e0;
+  cursor: not-allowed;
+  color: #888888;
+}
+
+.green-btn {
+  background: #28a745;
+  color: white;
+  transition: background 0.3s;
+}
+
+.green-btn:hover {
+  background: #218838;
+}
+
+.red-btn {
+  background: #dc3545;
+  color: white;
+  transition: background 0.3s;
+}
+
+.red-btn:hover {
+  background: #c82333;
+}
+
+#logout-btn {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  padding: 10px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 120px;
+}
+
+#logout-btn:hover {
+  background: #c82333;
+}
+
+#logout-btn:disabled {
+  background: #e0e0e0;
+  cursor: not-allowed;
+  color: #888888;
+}
+
+#message {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+#message.visible {
+  opacity: 1;
+}
+
+#sharedFilesList {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 80%;
+  text-align: left;
+}
+
+#sharedFilesList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  color: #333333;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+#sharedFilesList li:hover {
+  background-color: #f8f9fa;
+}
+
+#sharedFilesList li button {
+  font-size: 0.8em;
+  width: 75px;
+  margin: 5px 5px 5px 0px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  line-height: 1;
+}
+
+#sharedFilesList li button:hover {
+  background-color: #0056b3;
+}

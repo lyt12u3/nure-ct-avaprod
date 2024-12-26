@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management with Backendless</title>
+  <script src="http://api.backendless.com/sdk/js/latest/backendless.min.js"></script>
+  <link rel="stylesheet" href="../styles/style-light.css">
+</head>
+<body>
+  <h1>File managment</h1>
+
+  <form id="createFolderForm">
+    <input type="text" id="create-folder-name" placeholder="Folder name" required />
+    <button type="button" id="create-folder-btn" class="green-btn">Create Folder</button>
+  </form>
+
+  <form id="deleteFolderForm">
+    <input type="text" id="delete-folder-name" placeholder="Folder name" required />
+    <button type="button" id="delete-folder-btn" class="red-btn">Delete Folder</button>
+  </form>
+
+  <form id="showFilesForm">
+    <input type="text" id="show-files-folder-name" placeholder="Folder name" required />
+    <button type="button" id="list-files-btn">View files list</button>
+  </form>
+
+  <form id="uploadForm">
+    <input type="file" id="file-input" required />
+    <input type="text" id="folder-name" placeholder="Folder name" required />
+    <button type="button" id="upload-button">Upload File</button>
+  </form>
+
+  <form id="downloadForm">
+    <p>Download</p>
+    <input type="text" id="file-path" placeholder="File path" required />
+    <button type="button" id="download-button">Download File</button>
+  </form>
+
+  <form id="deleteForm">
+    <p>Delete</p>
+    <input type="text" id="delete-file-path" placeholder="File path" required />
+    <button type="button" id="delete-button" class="red-btn">Delete File</button>
+  </form>
+
+  <form id="shareFileForm">
+    <input type="text" id="file-to-share" placeholder="File path" required />
+    <input type="text" id="user-to-share" placeholder="Username" required />
+    <button type="button" id="share-file-button">Share File</button>
+  </form>
+
+  <form id="viewSharedFilesForm">
+    <button type="button" id="view-shared-files-button">View Shared Files</button>
+  </form>
+
+  <button type="button-logout" id="logout-btn">Logout</button>
+
+  <div id="message"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

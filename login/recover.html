@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management with Backendless</title>
+  <script src="http://api.backendless.com/sdk/js/latest/backendless.min.js"></script>
+  <link rel="stylesheet" href="../styles/style-light.css">
+</head>
+<body>
+  <h1>User Managment</h1>
+
+  <!-- Password Recovery Form -->
+  <h2>Recover Password</h2>
+  <form id="recoveryForm">
+    <input type="email" id="forgot-password-email" placeholder="Email" required />
+    <button type="button" id="forgot-password-btn">Recover Password</button>
+  </form>
+
+  <div class="link-container">
+    <a href="index.html" class="text-link">Login</a>
+    <a href="register.html" class="text-link">Register</a>
+  </div>
+
+  <!-- <button type="button-logout" id="logout-btn">Logout</button> -->
+
+  <div id="message"></div>
+
+  <script src="login.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      initEventHandlersRecover()
+    });
+  </script>
+</body>
+</html>

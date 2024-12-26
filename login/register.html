@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management with Backendless</title>
+  <script src="http://api.backendless.com/sdk/js/latest/backendless.min.js"></script>
+  <link rel="stylesheet" href="../styles/style-light.css">
+</head>
+<body>
+  <h1>User Managment</h1>
+
+  <!-- Registration Form -->
+  <h2>Register</h2>
+  <form id="registrationForm">
+    <input type="text" name="name" class="register-field" placeholder="Login" required />
+    <input type="email" name="email" class="register-field" placeholder="Email" required />
+    <input type="password" name="password" class="register-field" placeholder="Password" required />
+    <input type="number" name="age" class="register-field" placeholder="Age" required />
+    <input type="text" name="country" class="register-field" placeholder="Country" required />
+    <select name="gender" class="register-field" required>
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+    <button type="button" id="register-btn">Register</button>
+  </form>
+
+  <div class="link-container">
+    <a href="index.html" class="text-link">Login</a>
+    <a href="recover.html" class="text-link">Forgot password</a>
+  </div>
+
+  <!-- <button type="button-logout" id="logout-btn">Logout</button> -->
+
+  <div id="message"></div>
+
+  <script src="login.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      initEventHandlersRegister()
+    });
+  </script>
+</body>
+</html>
