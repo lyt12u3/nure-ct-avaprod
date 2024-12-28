@@ -3,7 +3,7 @@ body {
   background-color: #f9f9f9;
   color: #333333;
   margin: 0;
-  padding: 0;
+  padding-top: 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,6 +15,10 @@ h1 {
   font-size: 2.5em;
   margin-bottom: 20px;
   color: #333333;
+}
+
+.file-managment-h1 {
+  padding-top: 40px;
 }
 
 h2 {
@@ -43,7 +47,7 @@ form {
 }
 
 input {
-  width: 93%;
+  width: 94.5%;
   padding: 10px;
   margin: 10px;
   border: 1px solid #ccc;
@@ -93,7 +97,7 @@ select option {
   text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-button {
+.menu-button {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
@@ -107,17 +111,19 @@ button {
   transition: background 0.3s;
 }
 
-button:hover {
+.menu-button:hover {
   background: #0056b3;
 }
 
-button:disabled {
-  background: #e0e0e0;
-  cursor: not-allowed;
-  color: #888888;
-}
-
 .green-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
   background: #28a745;
   color: white;
   transition: background 0.3s;
@@ -128,6 +134,14 @@ button:disabled {
 }
 
 .red-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
   background: #dc3545;
   color: white;
   transition: background 0.3s;
@@ -137,7 +151,7 @@ button:disabled {
   background: #c82333;
 }
 
-#logout-btn {
+/* #logout-btn {
   position: fixed;
   top: 10px;
   right: 20px;
@@ -161,7 +175,7 @@ button:disabled {
   background: #e0e0e0;
   cursor: not-allowed;
   color: #888888;
-}
+} */
 
 #message {
   position: fixed;
@@ -224,4 +238,174 @@ button:disabled {
 
 #sharedFilesList li button:hover {
   background-color: #0056b3;
+}
+
+nav#navigation-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #007bff; /* Цвет навигационного бара */
+  height: 50px;
+  padding: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+#nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Расстояние между кнопками */
+}
+
+/* .nav-button {
+  background-color: #c82333;
+} */
+.nav-button {
+  background: none;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 50px;
+}
+
+.nav-button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  width: auto;
+}
+
+/* nav#navigation-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #007bff;
+  padding-bottom: 10px;
+  height: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+} */
+/* 
+nav#navigation-menu button {
+  background: none;
+  background-color: #ffffff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+nav#navigation-menu button:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+} */
+
+.profile-content-wrapper {
+  display: flex;
+  flex-direction: column; /* Располагаем элементы вертикально */
+  align-items: center; /* Центрируем элементы внутри нового div */
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.avatar-wrapper {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.avatar-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal-btn:hover {
+  background: #0056b3;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px;
+  max-height: 80%;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.modal-content h2 {
+  margin-bottom: 40px;
+}
+
+#photos-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#photos-list img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+#photos-list img:hover {
+  border-color: #007bff;
+}
+
+#photos-list label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+#photos-list input[type="radio"] {
+  margin-top: 5px;
 }

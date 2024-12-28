@@ -23,6 +23,7 @@
       document.getElementById('delete-button').addEventListener('click', deleteFile);
       document.getElementById('share-file-button').addEventListener('click', shareFile);
       document.getElementById('view-shared-files-button').addEventListener('click', viewSharedFiles);
+      document.getElementById('user-profile-btn').addEventListener('click', userProfile);
     }
 
     Backendless.UserService.getCurrentUser()
@@ -36,6 +37,10 @@
           }
         })
         .catch(onError);
+      
+    function userProfile() {
+      window.location.href = '../profile/profile.html';
+    }
 
     // 3: СТВОРЕННЯ ПАПКИ
     function createFolder() {

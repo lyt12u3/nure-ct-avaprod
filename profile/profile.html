@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management with Backendless</title>
+    <script src="http://api.backendless.com/sdk/js/latest/backendless.min.js"></script>
+    <link rel="stylesheet" href="../styles/style-light.css" />
+  </head>
+  <body>
+    <nav id="navigation-menu">
+      <div id="nav-buttons">
+        <button id="file-management-btn" class="nav-button">
+          File Management
+        </button>
+        <button id="user-profile-btn" class="nav-button">User Profile</button>
+        <button id="logout-btn" class="nav-button">Logout</button>
+      </div>
+    </nav>
+
+    <h1 class="file-managment-h1">User Profile</h1>
+
+    <form id="profile-container">
+      <h2>Profile picture</h2>
+      <div class="profile-content-wrapper">
+        <div class="avatar-wrapper">
+          <img id="profile-avatar" src="https://backendlessappcontent.com/A1D0E797-A8A7-4894-9F4B-CB04B16E36D9/649CB053-93AC-4624-A121-85BF82B47A45/files/Vlad/default-avatar.png" alt="Avatar" />
+        </div>
+        <input type="file" id="profile-photo-input" />
+        <button type="button" id="update-profile-photo-btn" class="menu-button">Apply New Photo</button>
+        <button id="view-existing-photos-btn" type="button" class="menu-button">View Existing Photos</button>
+
+        <div id="photos-modal" class="modal" style="display: none;">
+          <div class="modal-content">
+            <h2>Existing Photos</h2>
+            <div id="photos-list"></div>
+            <button id="save-photo-btn" type="button" class="modal-btn">Save Selected Photo</button>
+            <button id="close-modal-btn" type="button" class="modal-btn">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <h2 style="margin-top: 50px;">Profile information</h2>
+      <!-- <input type="text" name="name" class="register-field" placeholder="Login" required /> -->
+      <input type="email" name="email" id="info-email" placeholder="Email" required />
+      <input type="password" name="password" id="info-password" placeholder="Password" required />
+      <input type="number" name="age" id="info-age" placeholder="Age" required />
+      <input type="text" name="country" id="info-country" placeholder="Country" required />
+      <select name="gender" id="info-gender" required>
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <button id="save-profile-info" type="button" class="menu-button">Update Profile information</button>
+    </form>
+
+    <div id="message"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
