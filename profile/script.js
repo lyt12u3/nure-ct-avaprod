@@ -23,6 +23,10 @@
     document.getElementById('close-modal-btn').addEventListener('click', closeModal);
     document.getElementById('save-photo-btn').addEventListener('click', savePhoto);
     document.getElementById('save-profile-info').addEventListener('click', saveProfileInfo);
+    // document.getElementById('toggle-location-tracking-btn').addEventListener('click', toggleLocationTracking);
+    document.getElementById('toggle-location-tracking').addEventListener('change', toggleLocationTracking);
+    document.getElementById('add-place-btn').addEventListener('click', addPlace);
+    document.getElementById('delete-place-btn').addEventListener('click', deletePlace);
   }
 
   Backendless.UserService.getCurrentUser()
@@ -51,6 +55,7 @@
     window.location.href = "../main/main.html";
   }
 
+  // UPDATE PROFILE PHOTO
   function updatePhoto() {
     Backendless.UserService.getCurrentUser()
       .then((currentUser) => {
@@ -67,7 +72,7 @@
         }
 
         const file = fileInput.files[0];
-        const path = `/${currentUser.name}/avatar/${Date.now()}_${file.name}`;
+        const path = `pictures/users/${currentUser.objectId}/avatar/${Date.now()}_${file.name}`;
 
         Backendless.Files.upload(file, path, true)
           .then((uploadedFile) => {
@@ -89,6 +94,7 @@
       .catch(onError);
   }
 
+  // VIEW EXISTING PHOTOS
   function modalWindow() {
     Backendless.UserService.getCurrentUser()
       .then((currentUser) => {
@@ -101,7 +107,7 @@
 
         photosList.innerHTML = "";
 
-        let path = `/${currentUser.name}/avatar/`;
+        let path = `pictures/users/${currentUser.objectId}/avatar/`;
 
         Backendless.Files.listing(path)
           .then(files => {
@@ -126,6 +132,7 @@
       .catch(onError);
   }
 
+  // SAVE PHOTO
   function savePhoto() {
     const selectedPhoto = document.querySelector('input[name="selected_photo"]:checked');
 
@@ -160,6 +167,7 @@
     modal.style.display = "none";
   }
 
+  // UPDATE PROFILE INFORMATION
   function saveProfileInfo() {
     Backendless.UserService.getCurrentUser()
       .then((currentUser) => {
@@ -188,16 +196,114 @@
             showInfo("Profile updated successfully");
           })
           .catch(onError);
-        
-        // Backendless.UserService.update({
-        //   objectId: currentUser.objectId,
-        //   ...profile,
-        // })
-        //   .then((updatedUser) => {
-        //     currentUser = updatedUser;
-        //     showInfo("Profile info updated successfully.");
-        //   })
-        //   .catch(onError);
+      })
+      .catch(onError);
+  }
+
+  // ENABLE TRACKING
+  let trackingInterval;
+  function toggleLocationTracking() {
+    Backendless.UserService.getCurrentUser()
+      .then((currentUser) => {
+        if (!currentUser) {
+          showInfo("Please login first");
+          return;
+        }
+
+        let checkbox = document.getElementById("toggle-location-tracking").checked;
+        console.log(checkbox);
+        // return;
+        if (!checkbox) {
+          clearInterval(trackingInterval);
+          trackingInterval = null;
+          showInfo("Location tracking disabled.");
+        } else {
+          showInfo("Location tracking enabled.");
+          trackingInterval = setInterval(() => {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                var { latitude, longitude } = position.coords;
+                currentUser["my location"] = {
+                  type: "Point",
+                  coordinates: [longitude, latitude],
+                };
+                Backendless.UserService.update(currentUser)
+                  .then((updatedUser) => {
+                    currentUser = updatedUser;
+                    console.log("Location updated:", currentUser["my location"]);
+                  })
+                  .catch((error) =>
+                    console.error("Error updating location:", error)
+                  );
+              },
+              (error) => console.error("Geolocation error:", error),
+              { enableHighAccuracy: true }
+            );
+          }, 60000);
+        }
+      })
+      .catch(onError);
+  }
+
+  // ADD PLACE
+  function addPlace() {
+    Backendless.UserService.getCurrentUser()
+      .then((currentUser) => {
+        if (!currentUser) {
+          showInfo("Please login first");
+          return;
+        }
+
+        var latitude = parseFloat(document.getElementById("place-latitude").value);
+        var longitude = parseFloat(
+          document.getElementById("place-longitude").value
+        );
+        var place = {
+          category: document.getElementById("place-category").value,
+          description: document.getElementById("place-description").value,
+          hashtags: document
+            .getElementById("place-tags")
+            .value.split(",")
+            .join(","),
+          location: { type: "Point", coordinates: [longitude, latitude] },
+          name: document.getElementById("place-name").value,
+          ownerId: currentUser.objectId,
+        };
+
+        Backendless.Data.of("Places")
+          .save(place)
+          .then((savedPlace) => {
+            showInfo(`Place "${savedPlace.name}" added successfully.`);
+          })
+          .catch(onError);
+      })
+      .catch(onError);
+  }
+
+  // DELETE PLACE
+  function deletePlace() {
+    Backendless.UserService.getCurrentUser()
+      .then((currentUser) => {
+        if (!currentUser) {
+          showInfo("Please login first");
+          return;
+        }
+
+        var placeName = document.getElementById("place-to-delete").value;
+
+        Backendless.Data.of("Places")
+          .findFirst({
+            where: `name = '${placeName}' AND ownerId = '${currentUser.objectId}'`,
+          })
+          .then((place) => {
+            if (place) {
+              return Backendless.Data.of("Places").remove(place);
+            } else {
+              showInfo("You can only delete your own places or the place may not exist.");
+            }
+          })
+          .then(() => showInfo("Place deleted successfully"))
+          .catch(onError);
       })
       .catch(onError);
   }

@@ -78,7 +78,7 @@
     }
   
     function createSharedFolder(username) {
-      const sharedFolderPath = `/${username}/shared_with_me`;
+      const sharedFolderPath = `users/${username}/shared_with_me`;
       return Backendless.Files.createDirectory(sharedFolderPath);
     }
   

@@ -257,7 +257,7 @@
               }
     
               let fullPath = `${currentUser.name}/${filePath}`;
-              let sharedFolderPath = `/${targetUsername}/shared_with_me/`;
+              let sharedFolderPath = `users/${targetUsername}/shared_with_me/`;
               console.log("Shared folder path: " + sharedFolderPath);
     
               let baseFileURL = Backendless.appPath + "/files/";
@@ -286,7 +286,7 @@
             return;
           }
     
-          const sharedFolderPath = `/${currentUser.name}/shared_with_me/`;
+          const sharedFolderPath = `users/${currentUser.name}/shared_with_me/`;
     
           Backendless.Files.listing(sharedFolderPath)
             .then(files => {
