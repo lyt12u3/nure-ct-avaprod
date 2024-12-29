@@ -12,18 +12,18 @@
 
   <h2>Recover Password</h2>
   <form id="recoveryForm">
-    <input type="email" id="forgot-password-email" placeholder="Email" required />
+    <input type="email" id="forgot-password-email" placeholder="Login" required />
     <button type="button" id="forgot-password-btn" class="menu-button">Recover Password</button>
   </form>
 
   <div class="link-container">
-    <a href="index.html" class="text-link">Login</a>
+    <a href="login.html" class="text-link">Login</a>
     <a href="register.html" class="text-link">Register</a>
   </div>
 
   <div id="message"></div>
 
-  <script src="login.js"></script>
+  <script src="auth.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       initEventHandlersRecover()

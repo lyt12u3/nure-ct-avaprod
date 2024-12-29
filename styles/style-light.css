@@ -55,6 +55,7 @@ input {
   font-size: 1em;
   background-color: #ffffff;
   color: #333333;
+  transition: box-shadow 0.2s, border-color 0.2s;
 }
 
 input::placeholder {
@@ -120,6 +121,25 @@ select option {
 
 .menu-button:hover {
   background: #0056b3;
+}
+
+.menu-button-outline {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: white;
+  color: #007BFF;
+  border: 2px solid #007BFF;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.menu-button-outline:hover {
+  background: #007BFF;
+  color: white;
 }
 
 .green-btn {
@@ -475,7 +495,7 @@ textarea {
   color: #333;
   resize: vertical;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 
 textarea:focus {
@@ -483,4 +503,21 @@ textarea:focus {
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   background-color: #ffffff;
+}
+
+.img-search {
+  max-width: 100%;
+  max-height: 200px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.map-iframe {
+  width: 100%;
+  height: 300px;
+  margin-top: 20px;
+  border:0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

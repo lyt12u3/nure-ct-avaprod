@@ -1,6 +1,8 @@
 (function (Backendless) {
-    const APPLICATION_ID = 'A1D0E797-A8A7-4894-9F4B-CB04B16E36D9';
-    const SECRET_KEY = '627D5872-C92C-4224-968A-03655A6E1807';
+    // const APPLICATION_ID = 'A1D0E797-A8A7-4894-9F4B-CB04B16E36D9';
+    // const SECRET_KEY = '627D5872-C92C-4224-968A-03655A6E1807';
+    const APPLICATION_ID = '3A3C6A0A-0ACE-4124-AB1B-7B78131E868D';
+    const SECRET_KEY = '9BA9FD39-C4C9-4155-8634-5C42EB7A55FB';
   
     if (!APPLICATION_ID || !SECRET_KEY) {
       alert("Missing application ID or secret key arguments. Login to Backendless Console, select your app and get the ID and key from the Manage > App Settings screen. Copy/paste the values into the Backendless.initApp call.");
@@ -29,7 +31,7 @@
             console.log("User is logged in");
             showInfo("Session restored");
             setTimeout(() => {
-              window.location.href = "../main/main.html";
+              window.location.href = "../file-managment/file-managment.html";
             }, 1000);
           }
         })
@@ -96,7 +98,7 @@
           if (user) {
             showInfo("Login successful");
             setTimeout(() => {
-              window.location.href = "../main/main.html";
+              window.location.href = "../file-managment/file-managment.html";
             }, 1000);
           } else {
             showInfo("Login failed");

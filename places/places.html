@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management with Backendless</title>
+    <script src="http://api.backendless.com/sdk/js/latest/backendless.min.js"></script>
+    <link rel="stylesheet" href="../styles/style-light.css" />
+  </head>
+  <body>
+    <nav id="navigation-menu">
+      <div id="nav-buttons">
+        <button id="file-management-btn" class="nav-button">File Management</button>
+        <button id="user-profile-btn" class="nav-button">User Profile</button>
+        <button id="places-btn" class="nav-button">Places</button>
+        <button id="logout-btn" class="nav-button">Logout</button>
+      </div>
+    </nav>
+
+    <h1 class="file-managment-h1">Places</h1>
+
+    <form id="profile-container">
+      <h2>Add Place</h2>
+      <input type="text" id="place-name" placeholder="Place Name"/>
+      <input type="text" id="place-category" placeholder="Category"/>
+      <textarea id="place-description" placeholder="Description"></textarea>
+      <input type="text" id="place-tags" placeholder="Tags (comma-separated)"/>
+      <input type="number" step="any" id="place-latitude" placeholder="Latitude"/>
+      <input type="number" step="any" id="place-longitude" placeholder="Longitude"/>
+      <button type="button" id="use-my-coordinates-btn" class="menu-button" style="align-self: flex-start; width: auto;">Use My Coordinates</button>
+      <label style="align-self: flex-start; margin-top: 20px;">Place photo (Optional)</label>
+      <input type="file" id="place-photo-input" />
+      <button type="button" id="add-place-btn" class="green-btn">Add Place</button>
+
+      <h2 style="margin-top: 50px;">Delete Place</h2>
+      <input type="text" id="place-to-delete" placeholder="Place To Delete"/>
+      <button id="delete-place-btn" type="button" class="red-btn">Delete Place</button>
+
+      <h2 style="margin-top: 50px;">Search Places</h2>
+      <input type="text" id="place-search-name" placeholder="Place Name"/>
+      <input type="text" id="place-search-category" placeholder="Category"/>
+      <input type="number" step="any" id="search-radius" placeholder="Radius (km)"/>
+      <button id="search-places-btn" type="button" class="menu-button">Search</button>
+      <div id="search-results"></div>
+
+      <h2 style="margin-top: 50px;">Like Place</h2>
+      <input type="text" id="like-place-name" placeholder="Place Name"/>
+      <button id="search-place-like-btn" type="button" class="menu-button">Like</button>
+      
+      <h2 style="margin-top: 50px;">View My Places</h2>
+      <button id="view-my-places-btn" type="button" class="menu-button">View</button>
+      <div id="view-my-places-results"></div>
+
+      <h2 style="margin-top: 50px;">View On Map</h2>
+      <input type="text" id="view-on-map-name" placeholder="Place Name"/>
+      <div id="map-container" style="width: 100%;"></div>
+      <button id="view-on-map-btn" type="button" class="menu-button">View</button>
+    </form>
+
+    <div id="message"></div>
+
+    <script src="places.js"></script>
+  </body>
+</html>

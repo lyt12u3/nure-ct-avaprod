@@ -1,6 +1,8 @@
 (function (Backendless) {
-  const APPLICATION_ID = "A1D0E797-A8A7-4894-9F4B-CB04B16E36D9";
-  const SECRET_KEY = "627D5872-C92C-4224-968A-03655A6E1807";
+  // const APPLICATION_ID = "A1D0E797-A8A7-4894-9F4B-CB04B16E36D9";
+  // const SECRET_KEY = "627D5872-C92C-4224-968A-03655A6E1807";
+  const APPLICATION_ID = '3A3C6A0A-0ACE-4124-AB1B-7B78131E868D';
+  const SECRET_KEY = '9BA9FD39-C4C9-4155-8634-5C42EB7A55FB';
 
   if (!APPLICATION_ID || !SECRET_KEY) {
     alert(
@@ -17,16 +19,18 @@
 
   function initEventHandlers() {
     document.getElementById("logout-btn").addEventListener("click", logoutUser);
-    document.getElementById("file-management-btn").addEventListener("click", fileManagement);
+    document.getElementById("file-management-btn").addEventListener("click", () => {
+      window.location.href = "../file-managment/file-managment.html";
+    });
+    document.getElementById("places-btn").addEventListener("click", () => {
+      window.location.href = "../places/places.html";
+    });
     document.getElementById("update-profile-photo-btn").addEventListener("click", updatePhoto);
     document.getElementById('view-existing-photos-btn').addEventListener('click', modalWindow);
     document.getElementById('close-modal-btn').addEventListener('click', closeModal);
     document.getElementById('save-photo-btn').addEventListener('click', savePhoto);
     document.getElementById('save-profile-info').addEventListener('click', saveProfileInfo);
-    // document.getElementById('toggle-location-tracking-btn').addEventListener('click', toggleLocationTracking);
     document.getElementById('toggle-location-tracking').addEventListener('change', toggleLocationTracking);
-    document.getElementById('add-place-btn').addEventListener('click', addPlace);
-    document.getElementById('delete-place-btn').addEventListener('click', deletePlace);
   }
 
   Backendless.UserService.getCurrentUser()
@@ -35,7 +39,7 @@
         console.log("User is not logged in");
         showInfo("Please login first");
         setTimeout(() => {
-          window.location.href = "../login/index.html";
+          window.location.href = "../login/login.html";
         }, 1000);
       } else {
         document.getElementById("info-email").value = currentUser.email;
@@ -50,10 +54,6 @@
       }
     })
     .catch(onError);
-
-  function fileManagement() {
-    window.location.href = "../main/main.html";
-  }
 
   // UPDATE PROFILE PHOTO
   function updatePhoto() {
@@ -72,6 +72,7 @@
         }
 
         const file = fileInput.files[0];
+        console.log("file: " + file);
         const path = `pictures/users/${currentUser.objectId}/avatar/${Date.now()}_${file.name}`;
 
         Backendless.Files.upload(file, path, true)
@@ -120,7 +121,7 @@
               const label = document.createElement('label');
               label.innerHTML = `
                 <img src="${file.publicUrl}" alt="${file.name}">
-                <input type="radio" name="selected_photo" value="${file.publicUrl}">
+                <input type="radio" name="selected_photo" style="border-color: none; box-shadow: none;" value="${file.publicUrl}">
               `;
               photosList.appendChild(label);
             });
@@ -313,7 +314,7 @@
 
     Backendless.UserService.logout()
       .then(() => showInfo("User logged out successfully"))
-      .then(() => (window.location.href = "../login/index.html"))
+      .then(() => (window.location.href = "../login/login.html"))
       .catch((err) => console.error("Error during logout:", err));
   }
 

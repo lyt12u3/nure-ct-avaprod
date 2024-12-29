@@ -1,6 +1,8 @@
 (function (Backendless) {
-    const APPLICATION_ID = 'A1D0E797-A8A7-4894-9F4B-CB04B16E36D9';
-    const SECRET_KEY = '627D5872-C92C-4224-968A-03655A6E1807';
+    // const APPLICATION_ID = 'A1D0E797-A8A7-4894-9F4B-CB04B16E36D9';
+    // const SECRET_KEY = '627D5872-C92C-4224-968A-03655A6E1807';
+    const APPLICATION_ID = '3A3C6A0A-0ACE-4124-AB1B-7B78131E868D';
+    const SECRET_KEY = '9BA9FD39-C4C9-4155-8634-5C42EB7A55FB';
   
     if (!APPLICATION_ID || !SECRET_KEY) {
       alert("Missing application ID or secret key arguments. Login to Backendless Console, select your app and get the ID and key from the Manage > App Settings screen. Copy/paste the values into the Backendless.initApp call.");
@@ -23,7 +25,12 @@
       document.getElementById('delete-button').addEventListener('click', deleteFile);
       document.getElementById('share-file-button').addEventListener('click', shareFile);
       document.getElementById('view-shared-files-button').addEventListener('click', viewSharedFiles);
-      document.getElementById('user-profile-btn').addEventListener('click', userProfile);
+      document.getElementById('user-profile-btn').addEventListener('click', () => {
+        window.location.href = '../profile/profile.html';
+      });
+      document.getElementById("places-btn").addEventListener("click", () => {
+        window.location.href = "../places/places.html";
+      });
     }
 
     Backendless.UserService.getCurrentUser()
@@ -32,15 +39,11 @@
             console.log("User is not logged in");
             showInfo("Please login first");
             setTimeout(() => {
-              window.location.href = "../login/index.html";
+              window.location.href = "../login/login.html";
             }, 1000);
           }
         })
         .catch(onError);
-      
-    function userProfile() {
-      window.location.href = '../profile/profile.html';
-    }
 
     // 3: СТВОРЕННЯ ПАПКИ
     function createFolder() {
@@ -57,7 +60,7 @@
             return;
           }
     
-          const path = `/${currentUser.name}/${folderName}`;
+          const path = `users/${currentUser.name}/${folderName}`;
     
           Backendless.Files.createDirectory(path)
             .then(() => {
@@ -83,7 +86,7 @@
             return;
           }
     
-          const path = `/${currentUser.name}/${folderName}`;
+          const path = `users/${currentUser.name}/${folderName}`;
     
           Backendless.Files.remove(path)
             .then(() => {
@@ -105,7 +108,7 @@
 
           const folderName = document.getElementById('show-files-folder-name').value;
     
-          const path = `/${currentUser.name}/${folderName}`;
+          const path = `users/${currentUser.name}/${folderName}`;
     
           Backendless.Files.listing(path)
             .then(function (files) {
@@ -137,7 +140,7 @@
           }
     
           const file = fileInput.files[0];
-          const path = `/${currentUser.name}/${folderName}`;
+          const path = `users/${currentUser.name}/${folderName}`;
     
           Backendless.Files.upload(file, path, true)
             .then(uploadedFile => {
@@ -169,7 +172,7 @@
             return;
           }
     
-          const fullPath = `${currentUser.name}/${filePath}`;
+          const fullPath = `users/${currentUser.name}/${filePath}`;
 
           const baseFileURL = Backendless.appPath + "/files/";
           const fileURL = baseFileURL + fullPath;
@@ -216,7 +219,7 @@
             return;
           }
     
-          const fullPath = `/${currentUser.name}/${filePath}`;
+          const fullPath = `users/${currentUser.name}/${filePath}`;
     
           Backendless.Files.remove(fullPath)
             .then(() => {
@@ -256,7 +259,7 @@
                 return;
               }
     
-              let fullPath = `${currentUser.name}/${filePath}`;
+              let fullPath = `users/${currentUser.name}/${filePath}`;
               let sharedFolderPath = `users/${targetUsername}/shared_with_me/`;
               console.log("Shared folder path: " + sharedFolderPath);
     
@@ -350,7 +353,7 @@
     
         Backendless.UserService.logout()
             .then(() => showInfo("User logged out successfully"))
-            .then(() => window.location.href = "../login/index.html")
+            .then(() => window.location.href = "../login/login.html")
             .catch(err => console.error("Error during logout:", err));
     }
   

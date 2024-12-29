@@ -10,10 +10,9 @@
   <body>
     <nav id="navigation-menu">
       <div id="nav-buttons">
-        <button id="file-management-btn" class="nav-button">
-          File Management
-        </button>
+        <button id="file-management-btn" class="nav-button">File Management</button>
         <button id="user-profile-btn" class="nav-button">User Profile</button>
+        <button id="places-btn" class="nav-button">Places</button>
         <button id="logout-btn" class="nav-button">Logout</button>
       </div>
     </nav>
@@ -24,7 +23,7 @@
       <h2>Profile picture</h2>
       <div class="profile-content-wrapper">
         <div class="avatar-wrapper">
-          <img id="profile-avatar" src="https://backendlessappcontent.com/A1D0E797-A8A7-4894-9F4B-CB04B16E36D9/649CB053-93AC-4624-A121-85BF82B47A45/files/pictures/default-avatar.png" alt="Avatar" />
+          <img id="profile-avatar" src="https://backendlessappcontent.com/3A3C6A0A-0ACE-4124-AB1B-7B78131E868D/7962A85F-BAEA-460D-90F2-7AC5D3937E94/files/pictures/default-avatar.png" alt="Avatar" />
         </div>
         <input type="file" id="profile-photo-input" />
         <button type="button" id="update-profile-photo-btn" class="menu-button">Apply New Photo</button>
@@ -53,27 +52,14 @@
       <button id="save-profile-info" type="button" class="menu-button">Update Profile information</button>
 
       <h2 style="margin-top: 50px;">Location Tracking</h2>
-      <label class="switch">
+      <label class="switch" style="margin-bottom: 10px;">
         <input type="checkbox" id="toggle-location-tracking">
         <span class="slider"></span>
       </label>
-
-      <h2 style="margin-top: 50px;">Add Place</h2>
-      <input type="text" id="place-name" placeholder="Place Name"/>
-      <input type="text" id="place-category" placeholder="Category"/>
-      <textarea id="place-description" placeholder="Description"></textarea>
-      <input type="text" id="place-tags" placeholder="Tags (comma-separated)"/>
-      <input type="number" step="any" id="place-latitude" placeholder="Latitude"/>
-      <input type="number" step="any" id="place-longitude" placeholder="Longitude"/>
-      <button type="button" id="add-place-btn" class="menu-button">Add Place</button>
-
-      <h2 style="margin-top: 50px;">Delete Place</h2>
-      <input type="text" id="place-to-delete" placeholder="Place To Delete"/>
-      <button id="delete-place-btn" type="button" class="menu-button">Delete Place</button>
     </form>
 
     <div id="message"></div>
 
-    <script src="script.js"></script>
+    <script src="profile.js"></script>
   </body>
 </html>
