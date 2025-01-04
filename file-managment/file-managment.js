@@ -154,10 +154,8 @@
               console.log(uploadedFile);
             })
             .catch(error => {
-              console.error("Upload failed", error);
-              showInfo("File upload failed");
-            })
-            .catch(onError);
+              uploadError("File upload error", error);
+            });
         })
         .catch(onError);
     }
@@ -361,6 +359,14 @@
             .then(() => showInfo("User logged out successfully"))
             .then(() => window.location.href = "../login/login.html")
             .catch(err => console.error("Error during logout:", err));
+    }
+
+    function uploadError(logger, error) {
+      console.error("An error occurred: ", error);
+      showInfo(error.message || "An error occurred");
+      Backendless.Logging.getLogger(logger).error(
+        `File upload error: ${error.message}`
+      );
     }
   
     function onError(error) {

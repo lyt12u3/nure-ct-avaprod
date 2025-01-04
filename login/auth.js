@@ -104,7 +104,9 @@
             showInfo("Login failed");
           }
         })
-        .catch(onError);
+        .catch(error => {
+          loginError('Login error', login.username, login.password, error);
+        });
     }
   
     function resetPassword() {
@@ -117,6 +119,18 @@
           showInfo("Password reset instructions have been sent to your email");
         })
         .catch(onError);
+    }
+
+    function loginError(logger, username, password, error) {
+      if (error.code === 3003) {
+        showInfo(error.message || "An error occurred");
+        Backendless.Logging.getLogger(logger).error(
+          `Invalid login or password. Username: '${username}', password: '${password}'`
+        );
+      } else {
+        console.error("An error occurred:", error);
+        showInfo(error.message || "An error occurred");
+      }
     }
 
     function logoutUser() {
