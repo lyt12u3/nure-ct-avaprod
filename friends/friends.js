@@ -33,6 +33,7 @@
       });
       document.getElementById("add-friend-btn")?.addEventListener("click", addFriend);
       document.getElementById("view-my-requests-btn")?.addEventListener("click", viewMyRequests);
+      document.getElementById("view-my-friends-btn")?.addEventListener("click", viewMyFriends);
     }
   
     Backendless.UserService.getCurrentUser()
@@ -153,7 +154,7 @@
                                 resultsContainer.appendChild(document.createElement("hr"));
                             });
                         } else {
-                            resultsContainer.innerHTML = "<p>No friend requests found.</p>";
+                            resultsContainer.innerHTML = "<p style='margin-top: 20px;'>No friend requests found.</p>";
                         }
                     })
                     .catch(onError);
@@ -203,6 +204,71 @@
             .then(() => showInfo(`Friend request ${callback}ed successfully.`))
             .then(() => viewMyRequests())
             .catch(onError);
+        })
+        .catch(onError);
+    }
+
+    function viewMyFriends() {
+      Backendless.UserService.getCurrentUser()
+        .then((currentUser) => {
+          if (!currentUser) {
+            showInfo("Please login first.");
+            return;
+          }
+    
+          Backendless.Data.of("Users")
+            .findById(currentUser.objectId, { 
+              relations: ["friends"] })
+            // .loadRelations("friends", { objectId: currentUser.objectId })
+            // .loadRelations(currentUser.objectId, "friends")
+            .then(result => {
+              friends = result.friends;
+              console.log("My friends:", friends);
+              showInfo(`You have ${friends.length} friends.`);
+    
+              const resultsContainer = document.getElementById("view-my-friends-results");
+              resultsContainer.innerHTML = "";
+    
+              if (friends.length > 0) {
+                friends.forEach(friend => {
+                  const friendContainer = document.createElement("div");
+                  friendContainer.style.margin = "10px 0";
+    
+                  const friendInfo = document.createElement("p");
+                  friendInfo.style.marginTop = "20px";
+                  friendInfo.innerHTML = `<strong>${friend.name}</strong><br>(${friend.email})`;
+    
+                  const deleteButton = document.createElement("button");
+                  deleteButton.textContent = "Delete Friend";
+                  deleteButton.className = "red-btn";
+                  deleteButton.style.width = "auto";
+                  deleteButton.type = "button";
+                  deleteButton.style.marginBottom = "10px";
+    
+                  deleteButton.addEventListener("click", () => deleteFriend(currentUser.objectId, friend.objectId));
+    
+                  friendContainer.appendChild(friendInfo);
+                  friendContainer.appendChild(deleteButton);
+
+                  resultsContainer.appendChild(friendContainer);
+                  resultsContainer.appendChild(document.createElement("hr"));
+                });
+              } else {
+                resultsContainer.innerHTML = "<p style='margin-top: 20px;'>You have no friends.</p>";
+              }
+            })
+            .catch(onError);
+        })
+        .catch(onError);
+    }
+
+    function deleteFriend(userId, friendId) {
+      Backendless.Data.of("Users")
+        .deleteRelation(userId, "friends", [friendId])
+        .then(() => Backendless.Data.of("Users").deleteRelation(friendId, "friends", [userId]))
+        .then(() => {
+          showInfo("Friend deleted successfully.");
+          viewMyFriends(); // Обновляем список друзей
         })
         .catch(onError);
     }
