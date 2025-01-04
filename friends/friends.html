@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management with Backendless</title>
+    <script src="http://api.backendless.com/sdk/js/latest/backendless.min.js"></script>
+    <link rel="stylesheet" href="../styles/style-light.css" />
+  </head>
+  <body>
+    <nav id="navigation-menu">
+      <div id="nav-buttons">
+        <button id="file-management-btn" class="nav-button">File Management</button>
+        <button id="user-profile-btn" class="nav-button">User Profile</button>
+        <button id="places-btn" class="nav-button">Places</button>
+        <button id="feedback-btn" class="nav-button">Feedback</button>
+        <button id="friends-btn" class="nav-button" style="background-color: rgba(0, 0, 0, 0.2);">Friends</button>
+        <button id="logout-btn" class="nav-button">Logout</button>
+      </div>
+    </nav>
+
+    <h1 class="file-managment-h1">Friends</h1>
+
+    <form id="friend-container">
+      <h2>Add Friend</h2>
+      <input type="text" id="friend-name" placeholder="Friend Name"/>
+      <button type="button" class="green-btn" id="add-friend-btn">Add Friend</button>
+
+      <h2 style="margin-top: 50px;">View Requests</h2>
+      <button id="view-my-requests-btn" type="button" class="menu-button">View My Requests</button>
+      <div id="view-my-requests-results"></div>
+    </form>
+
+    <div id="message"></div>
+
+    <script src="friends.js"></script>
+  </body>
+</html>

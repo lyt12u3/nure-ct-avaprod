@@ -25,6 +25,12 @@
     document.getElementById("file-management-btn").addEventListener("click", () => {
       window.location.href = "../file-managment/file-managment.html";
     });
+    document.getElementById("feedback-btn").addEventListener("click", () => {
+      window.location.href = "../feedback/feedback.html";
+    });
+    document.getElementById("friends-btn").addEventListener("click", () => {
+      window.location.href = "../friends/friends.html";
+    });
     document.getElementById('add-place-btn').addEventListener('click', addPlace);
     document.getElementById('delete-place-btn').addEventListener('click', deletePlace);
     document.getElementById('use-my-coordinates-btn').addEventListener('click', useMyCoordinates);
@@ -125,12 +131,13 @@
           })
           .then((place) => {
             if (place) {
+              showInfo("Place deleted successfully")
               return Backendless.Data.of("Place").remove(place);
             } else {
               showInfo("You can only delete your own places or the place may not exist.");
+              return;
             }
           })
-          .then(() => showInfo("Place deleted successfully"))
           .catch(onError);
       })
       .catch(onError);

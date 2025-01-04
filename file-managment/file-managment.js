@@ -31,6 +31,12 @@
       document.getElementById("places-btn").addEventListener("click", () => {
         window.location.href = "../places/places.html";
       });
+      document.getElementById("feedback-btn").addEventListener("click", () => {
+        window.location.href = "../feedback/feedback.html";
+      });
+      document.getElementById("friends-btn").addEventListener("click", () => {
+        window.location.href = "../friends/friends.html";
+      });
     }
 
     Backendless.UserService.getCurrentUser()
